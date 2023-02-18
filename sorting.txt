@@ -1,0 +1,53 @@
+FUNCTION size() : INTEGER;
+VAR
+    n :INTEGER:=0,
+BEGIN
+    REPEAT
+        read(n);
+    UNTIL (n>0 and n<100)
+    RETURN n;
+END
+PROCEDURE fillarr(n:INTEGER, var arr : ARRAY_OF INTEGER;)
+VAR
+    i :INTEGER;
+BEGIN
+    FOR i FROM 1 TO n-1 STEP 1 DO
+        read(arr[i]);
+    END_FOR
+END
+PROCEDURE swap(var a : INTEGER, var b:INTEGER)
+VAR
+    aux :INTEGER:=0;
+BEGIN
+    aux:=a;
+    a:=b;
+    b:=aux;
+END
+PROCEDURE sort(arr: ARRAY_OF INTEGER;)
+VAR
+    i,j :INTEGER;
+BEGIN
+    FOR i FROM 1 TO arr.length -1 STEP 1  DO
+        j:=0;
+        WHILE (j<i-1) DO
+            IF (arr[i]<arr[j]) THEN
+                swap(arr[i],arr[j]);
+                break;
+            j:=j+1;
+        END_WHILE
+        /*FOR j FROM 0 TO i-1 STEP 1  DO
+            IF (arr[i]<arr[j]) THEN
+                swap(arr[i],arr[j])
+            END_IF
+        END_FOR*/
+    END_FOR
+END
+ALGORITHM arrange
+VAR
+    n: INTEGER ;
+    tab: ARRAY_OF INTEGER[50];
+BEGIN
+    n:=size();
+    fillarr(n,tab)
+    sort(tab);
+END
